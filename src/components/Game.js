@@ -5,6 +5,7 @@ export default function Game() {
     return (
         <View>
             <Text>Game</Text>
+            <Text>Text</Text>
         </View>
     )
 }
