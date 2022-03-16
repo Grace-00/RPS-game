@@ -1,6 +1,6 @@
 {
   "name": "rps-game-beije",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "description": "rock-paper-scissors game component for mobile and desktop",
   "main": "dist/index.js",
   "private": false,
