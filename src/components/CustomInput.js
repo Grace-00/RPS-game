@@ -3,7 +3,7 @@ import React from 'react'
 import PropTypes from 'prop-types';
 import { useState } from 'react';
 
-export default function Input(props) {
+export default function CustomInput(props) {
 
     const [isFocused, setIsFocused] = useState(false)
 
@@ -35,17 +35,18 @@ const styles = StyleSheet.create({
         borderStyle: 'solid',
         borderWidth: 1,
         borderRadius: 5,
-        outlineColor: '#00b4d8',
+       
     }
 })
 
-Input.defaultProps = {
+CustomInput.defaultProps = {
     inputContainer: styles.inputContainer,
     inputStyle: styles.inputStyle,
-    placeholder: 'name'
+    placeholder: 'name',
+    outlineColor: '#00b4d8',
 }
 
-Input.propTypes = {
+CustomInput.propTypes = {
     placeholder: PropTypes.string,
     callbackName: PropTypes.func
 }

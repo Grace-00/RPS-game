@@ -1,3 +1,7 @@
-import Input from "./Input";
+import CustomInput from "./CustomInput";
+import CustomButton from "./CustomButton";
 
-export { Input }
+export { 
+    CustomInput,
+    CustomButton
+}

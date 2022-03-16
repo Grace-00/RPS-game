@@ -1,14 +1,22 @@
 
 import './App.css';
-import Input from './components/Input';
+import CustomButton from './components/CustomButton';
+import CustomInput from './components/CustomInput';
 
 function App() {
+
   const handleName = (e) => {
     console.log(e);
   }
+
+  const handlePress = () => {
+    console.log('Pressed')
+  }
+  
   return (
     <div className="App">
-      <Input callbackName={handleName} />
+      <CustomInput callbackName={handleName} />
+      <CustomButton label='Press' callbackPress={handlePress}/>
     </div>
   );
 }
