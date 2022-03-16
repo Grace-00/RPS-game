@@ -1,3 +1,3 @@
-import Game from "./Game";
+import Input from "./Input";
 
-export { Game }
+export { Input }
