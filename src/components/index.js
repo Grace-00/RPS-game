@@ -1,7 +1,8 @@
 import CustomInput from "./CustomInput";
 import CustomButton from "./CustomButton";
-
-export { 
+import CustomImage from "./CustomImage";
+export {
     CustomInput,
-    CustomButton
+    CustomButton,
+    CustomImage
 }
