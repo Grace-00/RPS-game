@@ -1,15 +1,38 @@
 import React from 'react'
 import CustomButton from './CustomButton';
 import CustomInput from './CustomInput';
+import { View } from 'react-native';
+import PropTypes from 'prop-types';
 
+export default function Login(props) {
 
-const Login = () => {
+    const getName = (e) => {
+        props.handleInput(e)
+    }
+
+    const handlePress = () => {
+        props.handleButton()
+    }
+
     return (
-        <div style={{ display: 'flex', }}>
-            <CustomInput />
-            <CustomButton />
-        </div>
+        <View style={props.loginContainer}>
+            <CustomInput callbackName={getName} />
+            <CustomButton callbackPress={handlePress} />
+        </View>
     )
 }
 
-export default Login
+const styles = StyleSheet.create({
+    flex: 1
+})
+
+
+Login.defaultProps = {
+    loginContainer: styles.loginContainer
+}
+
+Login.propTypes = {
+    handleButton: PropTypes.func,
+    handleInput: PropTypes.func,
+}
+

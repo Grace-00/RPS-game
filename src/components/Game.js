@@ -1,7 +1,6 @@
 import React from 'react'
 import { useState } from 'react'
 import { View, Text } from 'react-native'
-import AsyncStorage from '@react-native-async-storage/async-storage'
 import { getData, getRandomNumber, storeData } from './utils/utils'
 import CustomButton from './CustomButton';
 import CustomImage from './CustomImage';
@@ -23,7 +22,6 @@ const Game = (props) => {
     })
     /* chiamata per salvare i player */
     const savePlayer = async () => {
-        console.log('salvoo')
         //prende valore dell'array e lo salva in existingPlayers come oggetto JSON
         let existingPlayers = await getData("arrayOfPlayers");
         //copia tutti gli elementi di existingPlayers(key,value) in arrOfPlayers
@@ -34,7 +32,6 @@ const Game = (props) => {
                 return obj;
             }
         });
-        console.log(foundPlayer);
         if (foundPlayer === undefined) {
             arrOfPlayers.push(state.player)
         }
@@ -59,7 +56,6 @@ const Game = (props) => {
         if ((typeCard === assetGame[0] && pcChoice === assetGame[1])
             || (typeCard === assetGame[1] && pcChoice === assetGame[2])
             || (typeCard === assetGame[2] && pcChoice === assetGame[0])) {
-            console.log('MATCH IF YOU WIN', assetGame);
             flagCase = true
             oneMoreUser = 1
             oneMorePc = 0
@@ -68,7 +64,6 @@ const Game = (props) => {
         } else if ((typeCard === assetGame[0] && pcChoice === assetGame[0])
             || (typeCard === assetGame[1] && pcChoice === assetGame[1])
             || (typeCard === assetGame[2] && pcChoice === assetGame[2])) {
-            console.log('MATCH IF TIE', assetGame);
             flagCase = false
             oneMoreUser = 0
             oneMorePc = 0
@@ -77,7 +72,6 @@ const Game = (props) => {
         } else if ((pcChoice === assetGame[0] && typeCard === assetGame[1])
             || (pcChoice === assetGame[1] && typeCard === assetGame[2])
             || (pcChoice === assetGame[2] && typeCard === assetGame[0])) {
-            console.log('MATCH IF YOU LOSE', assetGame);
             flagCase = false
             oneMoreUser = 0
             oneMorePc = 1
