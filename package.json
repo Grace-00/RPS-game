@@ -1,6 +1,6 @@
 {
   "name": "rps-game-beije",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "rock-paper-scissors game component for mobile and desktop",
   "main": "dist/index.js",
   "private": false,
@@ -9,6 +9,7 @@
     "README.md"
   ],
   "dependencies": {
+    "@react-native-async-storage/async-storage": "^1.16.3",
     "@testing-library/jest-dom": "^5.16.2",
     "@testing-library/react": "^12.1.4",
     "@testing-library/user-event": "^13.5.0",

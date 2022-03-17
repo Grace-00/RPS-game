@@ -32,9 +32,7 @@ function CustomButton(props) {
 
 var styles = _reactNative.StyleSheet.create({
   buttonContainer: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center'
+    width: 200
   },
   buttonStyle: {
     paddingVertical: 6,

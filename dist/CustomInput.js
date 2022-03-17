@@ -59,9 +59,7 @@ function CustomInput(props) {
 
 var styles = _reactNative.StyleSheet.create({
   inputContainer: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center'
+    width: 200
   },
   inputStyle: {
     padding: 10,
