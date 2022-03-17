@@ -23,9 +23,7 @@ export default function CustomButton(props) {
 
 const styles = StyleSheet.create({
     buttonContainer: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center'
+        width: 200
     },
     buttonStyle: {
         paddingVertical: 6,

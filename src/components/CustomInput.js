@@ -26,16 +26,14 @@ export default function CustomInput(props) {
 
 const styles = StyleSheet.create({
     inputContainer: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center'
+        width: 200
     },
     inputStyle: {
         padding: 10,
         borderStyle: 'solid',
         borderWidth: 1,
         borderRadius: 5,
-       
+
     }
 })
 

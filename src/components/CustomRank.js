@@ -31,18 +31,13 @@ export default function CustomRank(props) {
 
 const styles = StyleSheet.create({
     rankContainer: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
+        width: 200
     },
     flatlistContainer: {
-        width: 400,
         height: 200
     },
     itemStyle: {
         height: 50,
-        width: 400,
-
         justifyContent: 'space-between',
         paddingBottom: 7
     },
