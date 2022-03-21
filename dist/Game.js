@@ -11,8 +11,6 @@ var _react = _interopRequireWildcard(require("react"));
 
 var _reactNative = require("react-native");
 
-var _asyncStorage = _interopRequireDefault(require("@react-native-async-storage/async-storage"));
-
 var _utils = require("./utils/utils");
 
 var _CustomButton = _interopRequireDefault(require("./CustomButton"));
@@ -57,7 +55,8 @@ var Game = function Game(props) {
       name: props.name,
       points: 0,
       winner: ""
-    }
+    },
+    pcChoice: ''
   }),
       _useState2 = _slicedToArray(_useState, 2),
       state = _useState2[0],
@@ -72,12 +71,10 @@ var Game = function Game(props) {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
-              console.log('salvoo'); //prende valore dell'array e lo salva in existingPlayers come oggetto JSON
-
-              _context.next = 3;
+              _context.next = 2;
               return (0, _utils.getData)("arrayOfPlayers");
 
-            case 3:
+            case 2:
               existingPlayers = _context.sent;
               //copia tutti gli elementi di existingPlayers(key,value) in arrOfPlayers
               //non permette di azzerare l'array ad ogni azione
@@ -87,7 +84,6 @@ var Game = function Game(props) {
                   return obj;
                 }
               });
-              console.log(foundPlayer);
 
               if (foundPlayer === undefined) {
                 arrOfPlayers.push(state.player);
@@ -98,10 +94,10 @@ var Game = function Game(props) {
                 }
               }
 
-              _context.next = 10;
+              _context.next = 8;
               return (0, _utils.storeData)("arrayOfPlayers", arrOfPlayers);
 
-            case 10:
+            case 8:
             case "end":
               return _context.stop();
           }
@@ -123,19 +119,16 @@ var Game = function Game(props) {
       var winner = ""; //player wins
 
       if (typeCard === assetGame[0] && pcChoice === assetGame[1] || typeCard === assetGame[1] && pcChoice === assetGame[2] || typeCard === assetGame[2] && pcChoice === assetGame[0]) {
-        console.log('MATCH IF YOU WIN', assetGame);
         flagCase = true;
         oneMoreUser = 1;
         oneMorePc = 0;
         winner = "You win!"; //tie
       } else if (typeCard === assetGame[0] && pcChoice === assetGame[0] || typeCard === assetGame[1] && pcChoice === assetGame[1] || typeCard === assetGame[2] && pcChoice === assetGame[2]) {
-        console.log('MATCH IF TIE', assetGame);
         flagCase = false;
         oneMoreUser = 0;
         oneMorePc = 0;
         winner = "It's a tie!"; //player loses
       } else if (pcChoice === assetGame[0] && typeCard === assetGame[1] || pcChoice === assetGame[1] && typeCard === assetGame[2] || pcChoice === assetGame[2] && typeCard === assetGame[0]) {
-        console.log('MATCH IF YOU LOSE', assetGame);
         flagCase = false;
         oneMoreUser = 0;
         oneMorePc = 1;
@@ -148,19 +141,18 @@ var Game = function Game(props) {
           points: state.player.points + oneMoreUser,
           name: props.namePlayer
         },
-        winner: winner
+        winner: winner,
+        pcChoice: pcChoice
       });
     };
   };
 
   return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement(_reactNative.View, null, /*#__PURE__*/_react.default.createElement(_reactNative.Text, null, props.name)), /*#__PURE__*/_react.default.createElement(_reactNative.View, {
-    style: {
-      flexDirection: 'column'
-    }
+    style: props.outerGameContainer
   }, /*#__PURE__*/_react.default.createElement(_reactNative.View, {
-    style: {
-      flexDirection: 'row'
-    }
+    style: props.gameContainer
+  }, /*#__PURE__*/_react.default.createElement(_reactNative.View, {
+    style: props.viewGame
   }, /*#__PURE__*/_react.default.createElement(_CustomImage.default, {
     imageURI: _rock.default,
     callbackPress: match('rock')
@@ -171,26 +163,64 @@ var Game = function Game(props) {
     imageURI: _scissors.default,
     callbackPress: match('scissors')
   })), /*#__PURE__*/_react.default.createElement(_reactNative.View, {
-    style: {
-      width: 200
-    }
+    style: props.viewTexts
+  }, /*#__PURE__*/_react.default.createElement(_reactNative.View, {
+    style: props.viewTexts
   }, /*#__PURE__*/_react.default.createElement(_reactNative.Text, {
-    style: {
-      textAlign: 'center'
-    }
-  }, state.winner), /*#__PURE__*/_react.default.createElement(_reactNative.Text, {
-    style: {
-      textAlign: 'center'
-    }
-  }, state.player.points), /*#__PURE__*/_react.default.createElement(_reactNative.Text, {
-    style: {
-      textAlign: 'center'
-    }
-  }, state.pcPoints))), /*#__PURE__*/_react.default.createElement(_CustomButton.default, {
+    style: props.textStyle
+  }, "YOUR POINTS"), /*#__PURE__*/_react.default.createElement(_reactNative.Text, {
+    style: props.textStyle
+  }, state.player.points)))), /*#__PURE__*/_react.default.createElement(_reactNative.View, {
+    style: props.gameContainer
+  }, /*#__PURE__*/_react.default.createElement(_reactNative.View, {
+    style: props.viewGame
+  }, state.pcChoice === 'rock' && /*#__PURE__*/_react.default.createElement(_CustomImage.default, {
+    imageURI: _rock.default
+  }) || state.pcChoice === 'paper' && /*#__PURE__*/_react.default.createElement(_CustomImage.default, {
+    imageURI: _paper.default
+  }) || state.pcChoice === 'scissors' && /*#__PURE__*/_react.default.createElement(_CustomImage.default, {
+    imageURI: _scissors.default
+  })), /*#__PURE__*/_react.default.createElement(_reactNative.Text, {
+    style: props.textStyle
+  }, "PC POINTS"), /*#__PURE__*/_react.default.createElement(_reactNative.Text, {
+    style: props.textStyle
+  }, state.pcPoints))), /*#__PURE__*/_react.default.createElement(_reactNative.Text, {
+    style: props.textStyle
+  }, state.winner), /*#__PURE__*/_react.default.createElement(_CustomButton.default, {
     callbackPress: savePlayer,
     label: "Registrami"
   }));
 };
 
+var styles = _reactNative.StyleSheet.create({
+  outerGameContainer: {
+    flexDirection: 'row'
+  },
+  gameContainer: {
+    flex: 1,
+    height: 500,
+    borderColor: 'black',
+    borderStyle: 'solid',
+    borderWidth: 5,
+    justifyContent: 'center'
+  },
+  viewGame: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    gap: 40
+  },
+  viewTexts: {},
+  textStyle: {
+    textAlign: 'center'
+  }
+});
+
+Game.defaultProps = {
+  outerGameContainer: styles.outerGameContainer,
+  gameContainer: styles.gameContainer,
+  viewGame: styles.viewGame,
+  viewTexts: styles.viewTexts,
+  textStyle: styles.textStyle
+};
 var _default = Game;
 exports.default = _default;
