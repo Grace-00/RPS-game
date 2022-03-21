@@ -1,7 +1,7 @@
 import React from 'react'
 import CustomButton from './CustomButton';
 import CustomInput from './CustomInput';
-import { View } from 'react-native';
+import { View, StyleSheet } from 'react-native';
 import PropTypes from 'prop-types';
 
 export default function Login(props) {

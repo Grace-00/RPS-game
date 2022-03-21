@@ -1,13 +1,12 @@
 import React from 'react'
 import { useState } from 'react'
-import { View, Text } from 'react-native'
+import { View, Text, StyleSheet } from 'react-native'
 import { getData, getRandomNumber, storeData } from './utils/utils'
 import CustomButton from './CustomButton';
 import CustomImage from './CustomImage';
 import rock from '../assets/rock.svg'
 import paper from '../assets/paper.svg'
 import scissors from '../assets/scissors.svg'
-
 
 const Game = (props) => {
     const assetGame = ['scissors', 'paper', 'rock']
@@ -18,7 +17,8 @@ const Game = (props) => {
             name: props.name,
             points: 0,
             winner: ""
-        }
+        },
+        pcChoice: ''
     })
     /* chiamata per salvare i player */
     const savePlayer = async () => {
@@ -83,7 +83,8 @@ const Game = (props) => {
                 points: state.player.points + oneMoreUser,
                 name: props.namePlayer
             },
-            winner: winner
+            winner: winner,
+            pcChoice: pcChoice
         })
     }
 
@@ -92,28 +93,80 @@ const Game = (props) => {
             <View>
                 <Text>{props.name}</Text>
             </View>
-            <View style={{ flexDirection: 'column' }}>
-                <View style={{ flexDirection: 'row' }}>
-                    <CustomImage imageURI={rock} callbackPress={match('rock')} />
-                    <CustomImage imageURI={paper} callbackPress={match('paper')} />
-                    <CustomImage imageURI={scissors} callbackPress={match('scissors')} />
+            <View style={props.outerGameContainer}>
+                <View style={props.gameContainer}>
+                    <View style={props.viewGame}>
+                        <CustomImage imageURI={rock} callbackPress={match('rock')} />
+                        <CustomImage imageURI={paper} callbackPress={match('paper')} />
+                        <CustomImage imageURI={scissors} callbackPress={match('scissors')} />
+                    </View>
+                    <View style={props.viewTexts}>
+                        <View style={props.viewTexts}>
+                            <Text style={props.textStyle}>YOUR POINTS</Text>
+                            <Text style={props.textStyle}>
+                                {state.player.points}
+                            </Text>
+                        </View>
+                    </View>
                 </View>
-                <View style={{ width: 200 }}>
-                    <Text style={{ textAlign: 'center' }}>
-                        {state.winner}
-                    </Text>
-                    <Text style={{ textAlign: 'center' }}>
-                        {state.player.points}
-                    </Text>
-                    <Text style={{ textAlign: 'center' }}>
+                <View style={props.gameContainer}>
+                    <View style={props.viewGame}>
+                        {
+                            (state.pcChoice === 'rock' &&
+                                <CustomImage imageURI={rock} />) ||
+                            (state.pcChoice === 'paper' &&
+                                <CustomImage imageURI={paper} />) ||
+                            (state.pcChoice === 'scissors' &&
+                                <CustomImage imageURI={scissors} />)
+                        }
+                    </View>
+                    <Text style={props.textStyle}>PC POINTS</Text>
+                    <Text style={props.textStyle}>
                         {state.pcPoints}
                     </Text>
                 </View>
-            </View>
 
+            </View>
+            <Text style={props.textStyle}>
+                {state.winner}
+            </Text>
             <CustomButton callbackPress={savePlayer} label='Registrami' />
         </>
     )
 }
+
+const styles = StyleSheet.create({
+    outerGameContainer: {
+        flexDirection: 'row',
+    },
+    gameContainer: {
+        flex: 1,
+        height: 500,
+        borderColor: 'black',
+        borderStyle: 'solid',
+        borderWidth: 5,
+        justifyContent: 'center',
+    },
+    viewGame: {
+        flexDirection: 'row',
+        justifyContent: 'center',
+        gap: 40
+    },
+    viewTexts: {
+    },
+    textStyle: {
+        textAlign: 'center'
+    }
+})
+
+Game.defaultProps = {
+    outerGameContainer: styles.outerGameContainer,
+    gameContainer: styles.gameContainer,
+    viewGame: styles.viewGame,
+    viewTexts: styles.viewTexts,
+    textStyle: styles.textStyle
+}
+
+
 
 export default Game
