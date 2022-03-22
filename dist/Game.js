@@ -17,11 +17,11 @@ var _CustomButton = _interopRequireDefault(require("./CustomButton"));
 
 var _CustomImage = _interopRequireDefault(require("./CustomImage"));
 
-var _rock = _interopRequireDefault(require("../assets/rock.svg"));
+var _rock = _interopRequireDefault(require("./assets/rock.svg"));
 
-var _paper = _interopRequireDefault(require("../assets/paper.svg"));
+var _paper = _interopRequireDefault(require("./assets/paper.svg"));
 
-var _scissors = _interopRequireDefault(require("../assets/scissors.svg"));
+var _scissors = _interopRequireDefault(require("./assets/scissors.svg"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -154,12 +154,18 @@ var Game = function Game(props) {
   }, /*#__PURE__*/_react.default.createElement(_reactNative.View, {
     style: props.viewGame
   }, /*#__PURE__*/_react.default.createElement(_CustomImage.default, {
+    imageContainer: props.imageContainer,
+    imageStyle: props.imageStyle,
     imageURI: _rock.default,
     callbackPress: match('rock')
   }), /*#__PURE__*/_react.default.createElement(_CustomImage.default, {
+    imageContainer: props.imageContainer,
+    imageStyle: props.imageStyle,
     imageURI: _paper.default,
     callbackPress: match('paper')
   }), /*#__PURE__*/_react.default.createElement(_CustomImage.default, {
+    imageContainer: props.imageContainer,
+    imageStyle: props.imageStyle,
     imageURI: _scissors.default,
     callbackPress: match('scissors')
   })), /*#__PURE__*/_react.default.createElement(_reactNative.View, {
@@ -175,10 +181,16 @@ var Game = function Game(props) {
   }, /*#__PURE__*/_react.default.createElement(_reactNative.View, {
     style: props.viewGame
   }, state.pcChoice === 'rock' && /*#__PURE__*/_react.default.createElement(_CustomImage.default, {
+    imageContainer: props.imageContainer,
+    imageStyle: props.imageStyle,
     imageURI: _rock.default
   }) || state.pcChoice === 'paper' && /*#__PURE__*/_react.default.createElement(_CustomImage.default, {
+    imageContainer: props.imageContainer,
+    imageStyle: props.imageStyle,
     imageURI: _paper.default
   }) || state.pcChoice === 'scissors' && /*#__PURE__*/_react.default.createElement(_CustomImage.default, {
+    imageContainer: props.imageContainer,
+    imageStyle: props.imageStyle,
     imageURI: _scissors.default
   })), /*#__PURE__*/_react.default.createElement(_reactNative.Text, {
     style: props.textStyle
